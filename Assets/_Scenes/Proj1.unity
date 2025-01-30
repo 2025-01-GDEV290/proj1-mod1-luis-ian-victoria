@@ -241,6 +241,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d4597107a662bc943a22299d38057274, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  rb: {fileID: 0}
 --- !u!65 &352692940
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -1101,8 +1102,8 @@ Rigidbody:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2111447483}
   serializedVersion: 4
-  m_Mass: 1
-  m_Drag: 0
+  m_Mass: 10
+  m_Drag: 2
   m_AngularDrag: 0.05
   m_CenterOfMass: {x: 0, y: 0, z: 0}
   m_InertiaTensor: {x: 1, y: 1, z: 1}
@@ -1132,6 +1133,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7466445fa67690b4dabd1294846f2384, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  rb: {fileID: 0}
+  force: 20
 --- !u!65 &2111447486
 BoxCollider:
   m_ObjectHideFlags: 0
