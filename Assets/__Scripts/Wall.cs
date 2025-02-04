@@ -67,10 +67,6 @@ public class Wall : MonoBehaviour
                     default:
                         break;
                 }
-                //if(count >= 3)
-                //{
-                //   gameObject.SetActive(false);
-                //}
             }
 
         }
