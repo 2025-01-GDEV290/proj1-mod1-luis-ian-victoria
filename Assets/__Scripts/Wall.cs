@@ -6,6 +6,8 @@ public class Wall : MonoBehaviour
 {
 
     private int count;
+    private float velocity;
+    public Rigidbody rb;
     // Start is called before the first frame update
     void Start()
     {
@@ -23,11 +25,18 @@ public class Wall : MonoBehaviour
         //Check for a match with the specified name on any GameObject that collides with your GameObject
         if (other.gameObject.name == "Player")
         {
-            count++;
-            if(count >= 3)
-            {
-                gameObject.SetActive(false);
+            rb = other.GetComponent<Rigidbody>();
+            velocity = rb.velocity.magnitude;
+            Debug.Log(velocity);
+
+            if(velocity >= 10) {
+                count++;
+                if(count >= 3)
+                {
+                    gameObject.SetActive(false);
+                }
             }
+
         }
     }
 }

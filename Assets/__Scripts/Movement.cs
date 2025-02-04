@@ -5,7 +5,8 @@ using UnityEngine.InputSystem;
 
 public class Movement : MonoBehaviour
 {
-    private Rigidbody rb; 
+    public Rigidbody rb; 
+    public float force = 1;
 
     void Start()
         {
@@ -16,11 +17,11 @@ public class Movement : MonoBehaviour
         {
             if (Input.GetKey("w"))
             {
-                rb.AddForce(new Vector3(0,0,1));
+                rb.AddForce(new Vector3(0,0,1) * force * 2);
             }
             if (Input.GetKey("s"))
             {
-                rb.AddForce(new Vector3(0,0,-1));
+                rb.AddForce(new Vector3(0,0,-1) * force);
             }
         }
     
