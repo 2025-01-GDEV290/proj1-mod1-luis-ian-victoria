@@ -9,10 +9,21 @@ public class Movement : MonoBehaviour
     public float force = 1;
     public GameObject engine_rev_obj;
     public GameObject engine_slowdown_obj;
+    public GameObject engine_slowdown_slow_obj;
+    public GameObject hit_sound_obj_1;
+    public GameObject hit_sound_obj_2;
+    public GameObject hit_sound_obj_3;
+    public GameObject hit_sound_obj_4;
 
-    public AudioSource engine_rev;
-    public AudioSource engine_idle;
-    public AudioSource engine_slowdown;
+    private AudioSource engine_rev;
+    private AudioSource engine_idle;
+    private AudioSource engine_slowdown;
+    private AudioSource engine_slowdown_slow;
+    private AudioSource hit_1;
+    private AudioSource hit_2;
+    private AudioSource hit_3;
+    private AudioSource hit_4;
+
 
     void Start()
         {
@@ -20,6 +31,11 @@ public class Movement : MonoBehaviour
             engine_rev = engine_rev_obj.GetComponent<AudioSource>();
             engine_idle = GetComponent<AudioSource>();
             engine_slowdown = engine_slowdown_obj.GetComponent<AudioSource>();
+            engine_slowdown_slow = engine_slowdown_slow_obj.GetComponent<AudioSource>();
+            hit_1 = hit_sound_obj_1.GetComponent<AudioSource> ();
+            hit_2 = hit_sound_obj_2.GetComponent<AudioSource> ();
+            hit_3 = hit_sound_obj_3.GetComponent<AudioSource> () ;
+            hit_4 = hit_sound_obj_4.GetComponent<AudioSource> ();
         }
 
     void Update()
@@ -39,18 +55,42 @@ public class Movement : MonoBehaviour
             if ((Input.GetKeyUp("w") || Input.GetKeyUp("s")) && rb.velocity.magnitude > 1)
             {
                 engine_rev.Stop();
-                engine_slowdown.Play();
+                if (rb.velocity.magnitude > 20) {
+                    engine_slowdown.Play();
+                } else if(rb.velocity.magnitude > 4) {
+                    engine_slowdown_slow.Play();
+                }
+                
             }
         }
     
     void OnCollisionEnter(Collision other)
         {
+            switch(Random.Range(0,3)){
+                    case 0:
+                        hit_1.Play();
+                        break;
+                    case 1:
+                        hit_2.Play();
+                        break;
+                    case 2:
+                        hit_3.Play();
+                        break;
+                    case 3:
+                        hit_4.Play();
+                        break;
+                    default:
+                        break;
+                }
             if (other.gameObject.tag != "Door"){
                 engine_rev.Stop();
                 Debug.Log("Collided with not door");
+                
             }
+                
         }
+}
     
 
-}
+
 
