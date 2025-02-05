@@ -14,11 +14,14 @@ public class Wall : MonoBehaviour
     public GameObject door2;
     public GameObject door3;
     public GameObject door4;
+    public GameObject engine_rev_obj;
+    public AudioSource engine_rev;
 
     // Start is called before the first frame update
     void Start()
     {
         count = 0;
+        engine_rev = engine_rev_obj.GetComponent<AudioSource>();
     }
 
     // Update is called once per frame
@@ -44,10 +47,12 @@ public class Wall : MonoBehaviour
                     case 1:
                         door1.SetActive(false);
                         door2.SetActive(true);
+                        engine_rev.Stop();
                         break;
                     case 2:
                         door2.SetActive(false);
                         door3.SetActive(true);
+                        engine_rev.Stop();
                         break;
                     case 3:
                         door3.SetActive(false);
