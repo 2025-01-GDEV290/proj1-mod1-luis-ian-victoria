@@ -6,7 +6,7 @@ using UnityEngine.InputSystem;
 public class Movement : MonoBehaviour
 {
     public Rigidbody rb; 
-    public float force = 1;
+    public float force = 20.0F;
     public GameObject engine_rev_obj;
     public GameObject engine_slowdown_obj;
     public GameObject engine_slowdown_slow_obj;
@@ -38,7 +38,23 @@ public class Movement : MonoBehaviour
             hit_4 = hit_sound_obj_4.GetComponent<AudioSource> ();
         }
 
-    void Update()
+    void Update() {
+        if (Input.GetKeyDown("w") || Input.GetKeyDown("s"))
+            {
+                engine_rev.Play();
+            }
+        if ((Input.GetKeyUp("w") || Input.GetKeyUp("s")) && rb.velocity.magnitude > 1)
+        {
+            engine_rev.Stop();
+            if (rb.velocity.magnitude > 20) {
+                engine_slowdown.Play();
+            } else if(rb.velocity.magnitude > 4) {
+                engine_slowdown_slow.Play();
+            }
+            
+        }
+    }
+    void FixedUpdate()
         {
             if (Input.GetKey("w"))
             {
@@ -48,20 +64,7 @@ public class Movement : MonoBehaviour
             {
                 rb.AddForce(new Vector3(0,0,-1) * force);
             }
-            if (Input.GetKeyDown("w") || Input.GetKeyDown("s"))
-            {
-                engine_rev.Play();
-            }
-            if ((Input.GetKeyUp("w") || Input.GetKeyUp("s")) && rb.velocity.magnitude > 1)
-            {
-                engine_rev.Stop();
-                if (rb.velocity.magnitude > 20) {
-                    engine_slowdown.Play();
-                } else if(rb.velocity.magnitude > 4) {
-                    engine_slowdown_slow.Play();
-                }
-                
-            }
+            
         }
     
     void OnCollisionEnter(Collision other)

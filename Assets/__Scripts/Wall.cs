@@ -9,6 +9,8 @@ public class Wall : MonoBehaviour
     private float velocity;
     public float radius = 100.0F;
     public float power = 10.0F;
+
+    public float resistance = 150.0F;
     public Rigidbody rb;
     public GameObject door1;
     public GameObject door2;
@@ -75,7 +77,7 @@ public class Wall : MonoBehaviour
                         music.Stop();
                         crash.Play();
                         birds.volume = 1;
-                        rb.AddForce(new Vector3(0,0,-200), ForceMode.Impulse);
+                        rb.AddForce(new Vector3(0,0,resistance * -1), ForceMode.Impulse);
                         door3.SetActive(false);
                         door4.SetActive(true);
                         Vector3 explosionPos = transform.position - new Vector3(0,0,10);
