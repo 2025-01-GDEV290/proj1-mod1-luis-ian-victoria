@@ -28,7 +28,18 @@ public class Wall : MonoBehaviour
     private AudioSource alarm;
     public GameObject birds_obj;
     private AudioSource birds;
-
+    public GameObject heavenly_music_obj;
+    private AudioSource heavenly_music;
+    public GameObject headlights1;
+    public GameObject headlights2;
+    public GameObject headlights3;
+    public GameObject smoke;
+    public GameObject sparks1_obj;
+    private ParticleSystem sparks1;
+    public GameObject sparks2_obj;
+    private ParticleSystem sparks2;
+    public GameObject sparks3_obj;
+    private ParticleSystem sparks3;
     // Start is called before the first frame update
     void Start()
     {
@@ -39,6 +50,10 @@ public class Wall : MonoBehaviour
         door_hit = door_hit_obj.GetComponent<AudioSource>();
         alarm = alarm_obj.GetComponent<AudioSource>();
         birds = birds_obj.GetComponent<AudioSource>();
+        heavenly_music = heavenly_music_obj.GetComponent<AudioSource>();
+        sparks1 = sparks1_obj.GetComponent<ParticleSystem> ();
+        sparks2 = sparks2_obj.GetComponent<ParticleSystem> ();
+        sparks3 = sparks3_obj.GetComponent<ParticleSystem> ();
     }
 
     // Update is called once per frame
@@ -54,11 +69,13 @@ public class Wall : MonoBehaviour
         {
             rb = other.GetComponent<Rigidbody>();
             velocity = rb.velocity.magnitude;
-            Debug.Log(velocity);
 
             if(velocity >= 10) {
                 count++;
                 door_hit.Play();
+                sparks1.Play();
+                sparks2.Play();
+                sparks3.Play();
 
                 switch(count)
                 {
@@ -66,17 +83,23 @@ public class Wall : MonoBehaviour
                         door1.SetActive(false);
                         door2.SetActive(true);
                         engine_rev.Stop();
+                        headlights1.SetActive(false);
+                        headlights2.SetActive(true);
+                        smoke.SetActive(true);
                         break;
                     case 2:
                         door2.SetActive(false);
                         door3.SetActive(true);
                         engine_rev.Stop();
+                        headlights2.SetActive(false);
+                        headlights3.SetActive(true);
                         alarm.Play();
                         break;
                     case 3:
                         music.Stop();
                         crash.Play();
-                        birds.volume = 1;
+                        birds.Play();
+                        heavenly_music.Play();
                         rb.AddForce(new Vector3(0,0,resistance * -1), ForceMode.Impulse);
                         door3.SetActive(false);
                         door4.SetActive(true);
