@@ -40,6 +40,10 @@ public class Wall : MonoBehaviour
     private ParticleSystem sparks2;
     public GameObject sparks3_obj;
     private ParticleSystem sparks3;
+    public GameObject dashboard;
+    public GameObject dashboard_cracked_1;
+    public GameObject dashboard_cracked_2;
+    public GameObject dashboard_cracked_3;
     // Start is called before the first frame update
     void Start()
     {
@@ -80,6 +84,8 @@ public class Wall : MonoBehaviour
                 switch(count)
                 {
                     case 1:
+                        dashboard.SetActive(false);
+                        dashboard_cracked_1.SetActive(true);
                         door1.SetActive(false);
                         door2.SetActive(true);
                         engine_rev.Stop();
@@ -88,6 +94,8 @@ public class Wall : MonoBehaviour
                         smoke.SetActive(true);
                         break;
                     case 2:
+                        dashboard_cracked_1.SetActive(false);
+                        dashboard_cracked_2.SetActive(true);
                         door2.SetActive(false);
                         door3.SetActive(true);
                         engine_rev.Stop();
@@ -96,6 +104,8 @@ public class Wall : MonoBehaviour
                         alarm.Play();
                         break;
                     case 3:
+                        dashboard_cracked_2.SetActive(false);
+                        dashboard_cracked_3.SetActive(true);
                         music.Stop();
                         crash.Play();
                         birds.Play();

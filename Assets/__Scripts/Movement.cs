@@ -23,12 +23,7 @@ public class Movement : MonoBehaviour
     private AudioSource hit_2;
     private AudioSource hit_3;
     private AudioSource hit_4;
-    public GameObject sparks1_obj;
-    private ParticleSystem sparks1;
-    public GameObject sparks2_obj;
-    private ParticleSystem sparks2;
-    public GameObject sparks3_obj;
-    private ParticleSystem sparks3;
+ 
 
 
     void Start()
@@ -42,9 +37,6 @@ public class Movement : MonoBehaviour
             hit_2 = hit_sound_obj_2.GetComponent<AudioSource> ();
             hit_3 = hit_sound_obj_3.GetComponent<AudioSource> () ;
             hit_4 = hit_sound_obj_4.GetComponent<AudioSource> ();
-            sparks1 = sparks1_obj.GetComponent<ParticleSystem> ();
-            sparks2 = sparks2_obj.GetComponent<ParticleSystem> ();
-            sparks3 = sparks3_obj.GetComponent<ParticleSystem> ();
         }
 
     void Update() {
@@ -78,9 +70,6 @@ public class Movement : MonoBehaviour
     
     void OnCollisionEnter(Collision other)
         {
-            sparks1.Play();
-            sparks2.Play();
-            sparks3.Play();
             switch(Random.Range(0,3)){
                     case 0:
                         hit_1.Play();
