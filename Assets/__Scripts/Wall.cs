@@ -34,6 +34,12 @@ public class Wall : MonoBehaviour
     public GameObject headlights2;
     public GameObject headlights3;
     public GameObject smoke;
+    public GameObject sparks1_obj;
+    private ParticleSystem sparks1;
+    public GameObject sparks2_obj;
+    private ParticleSystem sparks2;
+    public GameObject sparks3_obj;
+    private ParticleSystem sparks3;
     // Start is called before the first frame update
     void Start()
     {
@@ -45,6 +51,9 @@ public class Wall : MonoBehaviour
         alarm = alarm_obj.GetComponent<AudioSource>();
         birds = birds_obj.GetComponent<AudioSource>();
         heavenly_music = heavenly_music_obj.GetComponent<AudioSource>();
+        sparks1 = sparks1_obj.GetComponent<ParticleSystem> ();
+        sparks2 = sparks2_obj.GetComponent<ParticleSystem> ();
+        sparks3 = sparks3_obj.GetComponent<ParticleSystem> ();
     }
 
     // Update is called once per frame
@@ -60,11 +69,13 @@ public class Wall : MonoBehaviour
         {
             rb = other.GetComponent<Rigidbody>();
             velocity = rb.velocity.magnitude;
-            Debug.Log(velocity);
 
             if(velocity >= 10) {
                 count++;
                 door_hit.Play();
+                sparks1.Play();
+                sparks2.Play();
+                sparks3.Play();
 
                 switch(count)
                 {
