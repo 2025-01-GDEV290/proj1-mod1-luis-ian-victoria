@@ -21109,7 +21109,10 @@ MonoBehaviour:
   headlights1: {fileID: 684674979}
   headlights2: {fileID: 1240447547}
   headlights3: {fileID: 232008520}
-  smoke: {fileID: 0}
+  smoke: {fileID: 1531512874}
+  sparks1_obj: {fileID: 1419601668}
+  sparks2_obj: {fileID: 377914368}
+  sparks3_obj: {fileID: 1949684746}
 --- !u!65 &1000970629
 BoxCollider:
   m_ObjectHideFlags: 0
